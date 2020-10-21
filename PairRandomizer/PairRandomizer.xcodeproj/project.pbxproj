@@ -13,6 +13,7 @@
 		2AC96DFC2540ED5A006A445A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC96DFB2540ED5A006A445A /* Assets.xcassets */; };
 		2AC96DFF2540ED5A006A445A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC96DFD2540ED5A006A445A /* LaunchScreen.storyboard */; };
 		2AC96E0F2540EEED006A445A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC96E0E2540EEED006A445A /* Person.swift */; };
+		2AC96E142540EFFA006A445A /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC96E132540EFFA006A445A /* PersonController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2AC96DFE2540ED5A006A445A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AC96E002540ED5A006A445A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AC96E0E2540EEED006A445A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		2AC96E132540EFFA006A445A /* PersonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				2AC96E092540ED98006A445A /* Models */,
 				2AC96E0A2540EDA1006A445A /* Views */,
+				2AC96E112540EFE5006A445A /* Controllers */,
 				2AC96E072540ED94006A445A /* Resources */,
 			);
 			path = PairRandomizer;
@@ -97,6 +100,22 @@
 				2AC96DF82540ED59006A445A /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2AC96E112540EFE5006A445A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2AC96E122540EFEC006A445A /* ModelControllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2AC96E122540EFEC006A445A /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2AC96E132540EFFA006A445A /* PersonController.swift */,
+			);
+			path = ModelControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC96E142540EFFA006A445A /* PersonController.swift in Sources */,
 				2AC96E0F2540EEED006A445A /* Person.swift in Sources */,
 				2AC96DF32540ED59006A445A /* AppDelegate.swift in Sources */,
 				2AC96DF52540ED59006A445A /* SceneDelegate.swift in Sources */,
