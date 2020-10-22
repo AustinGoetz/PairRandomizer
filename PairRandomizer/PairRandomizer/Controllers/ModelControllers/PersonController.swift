@@ -16,8 +16,15 @@ class PersonController {
     var people: [Person] = []
     
     // MARK: - CRUD
+    // Create
     func addPersonWith(name: String) {
         let newPerson = Person(name: name)
         people.append(newPerson)
+    }
+    
+    // Delete
+    func remove(person: Person) {
+        guard let indexPathOfPersonToRemove = people.firstIndex(of: person) else { return }
+        people.remove(at: indexPathOfPersonToRemove)
     }
 }

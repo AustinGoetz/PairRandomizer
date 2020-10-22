@@ -40,11 +40,13 @@ class ListTableViewController: UITableViewController {
         return cell
     }
 
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let personToDelete = PersonController.shared.people[indexPath.row]
+            PersonController.shared.remove(person: personToDelete)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
     
     // MARK: - Class Functions
     func presentAlertController() {
