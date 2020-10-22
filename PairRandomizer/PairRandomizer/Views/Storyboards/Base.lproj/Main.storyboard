@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--List Table View Controller-->
         <scene sceneID="VcD-sc-tk1">
             <objects>
-                <tableViewController id="kmF-nr-rcH" sceneMemberID="viewController">
+                <tableViewController id="kmF-nr-rcH" customClass="ListTableViewController" customModule="PairRandomizer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="c4E-HH-BQa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,6 +19,9 @@
                             <rect key="frame" x="0.0" y="99.666667938232422" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Randomize"/>
+                            <connections>
+                                <action selector="randomButtonTapped:" destination="kmF-nr-rcH" eventType="touchUpInside" id="OI7-Zq-TEF"/>
+                            </connections>
                         </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personCell" textLabel="Ct9-IC-LIp" style="IBUITableViewCellStyleDefault" id="chd-zv-HKN">
@@ -45,7 +48,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Fda-wk-cH5">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ob7-o6-fVs"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ob7-o6-fVs">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="kmF-nr-rcH" id="F4X-Nh-EHj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kL4-zZ-1yX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -16,7 +16,7 @@ class PersonController {
     var people: [Person] = []
     
     // MARK: - CRUD
-    func addPerson(name: String) {
+    func addPersonWith(name: String) {
         let newPerson = Person(name: name)
         people.append(newPerson)
     }

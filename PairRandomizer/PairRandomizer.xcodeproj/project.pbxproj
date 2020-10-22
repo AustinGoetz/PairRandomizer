@@ -14,6 +14,7 @@
 		2AC96DFF2540ED5A006A445A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC96DFD2540ED5A006A445A /* LaunchScreen.storyboard */; };
 		2AC96E0F2540EEED006A445A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC96E0E2540EEED006A445A /* Person.swift */; };
 		2AC96E142540EFFA006A445A /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC96E132540EFFA006A445A /* PersonController.swift */; };
+		2AC96E192540F35C006A445A /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC96E182540F35C006A445A /* ListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2AC96E002540ED5A006A445A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AC96E0E2540EEED006A445A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		2AC96E132540EFFA006A445A /* PersonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
+		2AC96E182540F35C006A445A /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		2AC96E112540EFE5006A445A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2AC96E172540F26E006A445A /* ViewControllers */,
 				2AC96E122540EFEC006A445A /* ModelControllers */,
 			);
 			path = Controllers;
@@ -116,6 +119,14 @@
 				2AC96E132540EFFA006A445A /* PersonController.swift */,
 			);
 			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		2AC96E172540F26E006A445A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2AC96E182540F35C006A445A /* ListTableViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +202,7 @@
 				2AC96E142540EFFA006A445A /* PersonController.swift in Sources */,
 				2AC96E0F2540EEED006A445A /* Person.swift in Sources */,
 				2AC96DF32540ED59006A445A /* AppDelegate.swift in Sources */,
+				2AC96E192540F35C006A445A /* ListTableViewController.swift in Sources */,
 				2AC96DF52540ED59006A445A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,7 +352,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G359J97949;
-				INFOPLIST_FILE = PairRandomizer/Info.plist;
+				INFOPLIST_FILE = PairRandomizer/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,7 +371,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G359J97949;
-				INFOPLIST_FILE = PairRandomizer/Info.plist;
+				INFOPLIST_FILE = PairRandomizer/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
