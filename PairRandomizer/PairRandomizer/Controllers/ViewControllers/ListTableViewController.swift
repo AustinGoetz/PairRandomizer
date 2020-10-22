@@ -9,11 +9,14 @@ import UIKit
 
 class ListTableViewController: UITableViewController {
 
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         PersonController.shared.loadFromPersistentStore()
-        PersonController.shared.createPairs()
+        if PersonController.shared.people.count > 0 {
+            PersonController.shared.createPairs()
+        }
     }
     
     // MARK: - Actions
@@ -42,8 +45,8 @@ class ListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath)
-
         let personToDisplay = PersonController.shared.pairs[indexPath.section][indexPath.row]
+        
         cell.textLabel?.text = personToDisplay.name
 
         return cell
@@ -52,6 +55,7 @@ class ListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let personToDelete = PersonController.shared.people[indexPath.row]
+            
             PersonController.shared.pairs[indexPath.section].remove(at: indexPath.row)
             PersonController.shared.remove(person: personToDelete)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -66,6 +70,7 @@ class ListTableViewController: UITableViewController {
     // MARK: - Class Functions
     func presentAlertController() {
         let alertController = UIAlertController(title: "Add a name to the list", message: "Would be fun to do a Jazz player!", preferredStyle: .alert)
+        
         alertController.addTextField { (nameTextField) in
             nameTextField.placeholder = "Enter name"
         }
@@ -83,7 +88,6 @@ class ListTableViewController: UITableViewController {
         
         alertController.addAction(cancelAction)
         alertController.addAction(addAction)
-        
         self.present(alertController, animated: true, completion: nil)
     }
 }

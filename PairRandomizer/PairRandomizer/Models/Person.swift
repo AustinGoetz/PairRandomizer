@@ -15,6 +15,7 @@ class Person: Codable {
     }
 }
 
+// MARK: - Extensions
 extension Person: Equatable {
     static func == (lhs: Person, rhs: Person) -> Bool {
         return lhs === rhs
