@@ -12,30 +12,32 @@ class PersonController {
     // MARK: - Properties
     /// Shared Instance
     static let shared = PersonController()
-    /// Source of Truth
+    /// Source of Truth for all created Person objects
     var people: [Person] = []
+    /// Source of Truth for all pair groups
     var pairs: [[Person]] = []
     
     // MARK: - CRUD
     // Create
     func addPersonWith(name: String) {
         let newPerson = Person(name: name)
-        self.people.append(newPerson)
         
+        self.people.append(newPerson)
         saveToPersistentStore()
     }
     
     // Delete
     func remove(person: Person) {
         guard let indexPathOfPersonToRemove = self.people.firstIndex(of: person) else { return }
-        self.people.remove(at: indexPathOfPersonToRemove)
         
+        self.people.remove(at: indexPathOfPersonToRemove)
         saveToPersistentStore()
     }
     
     // MARK: - Helpers
     func shuffleNames() {
         let shuffledArray = self.people.shuffled()
+        
         self.people = shuffledArray
     }
     
@@ -53,6 +55,7 @@ class PersonController {
                 singlePair.append(person)
             }
         }
+        
         multiplePairsArray.append(singlePair)
         self.pairs = multiplePairsArray
     }
