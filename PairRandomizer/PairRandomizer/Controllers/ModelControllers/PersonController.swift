@@ -14,29 +14,48 @@ class PersonController {
     static let shared = PersonController()
     /// Source of Truth
     var people: [Person] = []
+    var pairs: [[Person]] = []
     
     // MARK: - CRUD
     // Create
     func addPersonWith(name: String) {
         let newPerson = Person(name: name)
-        people.append(newPerson)
+        self.people.append(newPerson)
         
         saveToPersistentStore()
     }
     
     // Delete
     func remove(person: Person) {
-        guard let indexPathOfPersonToRemove = people.firstIndex(of: person) else { return }
-        people.remove(at: indexPathOfPersonToRemove)
+        guard let indexPathOfPersonToRemove = self.people.firstIndex(of: person) else { return }
+        self.people.remove(at: indexPathOfPersonToRemove)
         
         saveToPersistentStore()
     }
     
     // MARK: - Helpers
     func shuffleNames() {
-        let arrayToShuffle = people
+        let arrayToShuffle = self.people
         let shuffledArray = arrayToShuffle.shuffled()
-        people = shuffledArray
+        self.people = shuffledArray
+    }
+    
+    /// Creates pairs from the people SoT array and adds them to the pairs array
+    func createPairs() {
+        var singlePair: [Person] = []
+        var multiplePairsArray: [[Person]] = []
+        
+        for person in self.people {
+            if singlePair.count < 2 {
+                singlePair.append(person)
+            } else {
+                multiplePairsArray.append(singlePair)
+                singlePair = []
+                singlePair.append(person)
+            }
+        }
+        multiplePairsArray.append(singlePair)
+        self.pairs = multiplePairsArray
     }
     
     // MARK: - Persistence
