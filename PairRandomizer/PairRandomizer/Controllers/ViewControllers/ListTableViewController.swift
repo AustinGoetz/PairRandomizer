@@ -11,6 +11,8 @@ class ListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        PersonController.shared.loadFromPersistentStore()
     }
     
     // MARK: - Actions
