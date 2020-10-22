@@ -21,6 +21,8 @@ class ListTableViewController: UITableViewController {
     }
     
     @IBAction func randomButtonTapped(_ sender: Any) {
+        PersonController.shared.shuffleNames()
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source

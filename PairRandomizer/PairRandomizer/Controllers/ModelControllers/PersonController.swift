@@ -32,6 +32,13 @@ class PersonController {
         saveToPersistentStore()
     }
     
+    // MARK: - Helpers
+    func shuffleNames() {
+        let arrayToShuffle = people
+        let shuffledArray = arrayToShuffle.shuffled()
+        people = shuffledArray
+    }
+    
     // MARK: - Persistence
     // Create
     fileprivate func fileURLForPersistentStore() -> URL {
