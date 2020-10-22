@@ -35,8 +35,7 @@ class PersonController {
     
     // MARK: - Helpers
     func shuffleNames() {
-        let arrayToShuffle = self.people
-        let shuffledArray = arrayToShuffle.shuffled()
+        let shuffledArray = self.people.shuffled()
         self.people = shuffledArray
     }
     
