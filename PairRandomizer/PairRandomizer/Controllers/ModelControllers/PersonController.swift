@@ -13,51 +13,70 @@ class PersonController {
     /// Shared Instance
     static let shared = PersonController()
     /// Source of Truth for all created Person objects
-    var people: [Person] = []
+//    var people: [Person] = []
     /// Source of Truth for all pair groups
     var pairs: [[Person]] = []
     
     // MARK: - CRUD
     // Create
-    func addPersonWith(name: String) {
+    func createPersonWith(name: String) {
         let newPerson = Person(name: name)
         
-        self.people.append(newPerson)
+        addToPair(person: newPerson)
+        saveToPersistentStore()
+    }
+    
+    /// Adds the passed through person into a pair stored in the pairs array
+    /// - Parameter person: The object to be added to a pair and saved
+    func addToPair(person: Person) {
+        // If there's nothing in the SoT, we can just add as a new array containing the person passed in
+        if self.pairs.count == 0 {
+            self.pairs.append([person])
+            // We can return because we don't want to run our look and check to see if the count is less than 2. We know what's there
+            return
+        }
+        // Declare a property that
+        var n = 0
+        for pair in self.pairs {
+            if pair.count < 2 {
+                self.pairs[n].append(person)
+                return
+            }
+            n += 1
+        }
+        self.pairs.append([person])
         saveToPersistentStore()
     }
     
     // Delete
-    func remove(person: Person) {
-        guard let indexPathOfPersonToRemove = self.people.firstIndex(of: person) else { return }
+    func deletePersonAtIndex(section: Int, row: Int) {
+        pairs[section].remove(at: row)
         
-        self.people.remove(at: indexPathOfPersonToRemove)
+        if pairs[section].count == 1 {
+            let oldPartner = pairs[section][0]
+            pairs.remove(at: section)
+            addToPair(person: oldPartner)
+        }
+        
         saveToPersistentStore()
     }
     
     // MARK: - Helpers
     func shuffleNames() {
-        let shuffledArray = self.people.shuffled()
-        
-        self.people = shuffledArray
-    }
-    
-    /// Creates pairs from the people SoT array and adds them to the pairs array
-    func createPairs() {
-        var singlePair: [Person] = []
-        var multiplePairsArray: [[Person]] = []
-        
-        for person in self.people {
-            if singlePair.count < 2 {
-                singlePair.append(person)
-            } else {
-                multiplePairsArray.append(singlePair)
-                singlePair = []
-                singlePair.append(person)
+        var placeholderArray: [Person] = []
+        for pair in self.pairs {
+            for person in pair {
+                placeholderArray.append(person)
             }
         }
+        self.pairs = []
         
-        multiplePairsArray.append(singlePair)
-        self.pairs = multiplePairsArray
+        let shuffledArray = placeholderArray.shuffled()
+        for person in shuffledArray {
+            addToPair(person: person)
+        }
+        
+        saveToPersistentStore()
     }
     
     // MARK: - Persistence
@@ -74,8 +93,8 @@ class PersonController {
         let encoder = JSONEncoder()
         
         do {
-            let peopleJSON = try encoder.encode(people)
-            try peopleJSON.write(to: fileURLForPersistentStore())
+            let pairsJSON = try encoder.encode(self.pairs)
+            try pairsJSON.write(to: fileURLForPersistentStore())
         } catch {
             print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
         }
@@ -87,9 +106,9 @@ class PersonController {
         
         do {
             let jsonData = try Data(contentsOf: fileURLForPersistentStore())
-            let decodedPeople = try decoder.decode([Person].self, from: jsonData)
+            let decodedPairs = try decoder.decode([[Person]].self, from: jsonData)
             
-            people = decodedPeople
+            self.pairs = decodedPairs
         } catch {
             print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
         }

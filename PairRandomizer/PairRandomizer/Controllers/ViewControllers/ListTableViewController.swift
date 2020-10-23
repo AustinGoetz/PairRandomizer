@@ -14,9 +14,6 @@ class ListTableViewController: UITableViewController {
         super.viewDidLoad()
         
         PersonController.shared.loadFromPersistentStore()
-        if PersonController.shared.people.count > 0 {
-            PersonController.shared.createPairs()
-        }
     }
     
     // MARK: - Actions
@@ -26,7 +23,6 @@ class ListTableViewController: UITableViewController {
     
     @IBAction func randomButtonTapped(_ sender: Any) {
         PersonController.shared.shuffleNames()
-        PersonController.shared.createPairs()
         self.tableView.reloadData()
     }
 
@@ -54,16 +50,13 @@ class ListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let personToDelete = PersonController.shared.people[indexPath.row]
-            
-            PersonController.shared.pairs[indexPath.section].remove(at: indexPath.row)
-            PersonController.shared.remove(person: personToDelete)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            PersonController.shared.deletePersonAtIndex(section: indexPath.section, row: indexPath.row)
             
             if PersonController.shared.pairs[indexPath.section].count == 0 {
                 PersonController.shared.pairs.remove(at: indexPath.section)
-                tableView.deleteSections([indexPath.section], with: .fade)
+                tableView.deleteSections([indexPath.section], with: .none)
             }
+            self.tableView.reloadData()
         }
     }
     
@@ -78,10 +71,8 @@ class ListTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
             guard let text = alertController.textFields?.first?.text, !text.isEmpty else { return }
-            // Adds person to the people SoT
-            PersonController.shared.addPersonWith(name: text)
-            // Creates pairs from the SoT and stores in pairs property
-            PersonController.shared.createPairs()
+            // Creates a Person and adds it to the pair SoT
+            PersonController.shared.createPersonWith(name: text)
             // Perhaps move this later
             self.tableView.reloadData()
         }
